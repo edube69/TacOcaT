@@ -22,7 +22,7 @@ function reverseString(userString){
 // view function
 function displayString(userString, revString){
     // Write to the page
-    if (userString == revString) {
+    if (userString.toLowerCase() == revString.toLowerCase()) {
         document.getElementById("msgHead").innerHTML = `Well Done! Your test string is a palindrome`    
     }else{
         document.getElementById("msgHead").innerHTML = `Sorry, your test string is not a palindrome`
