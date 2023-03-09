@@ -2,9 +2,21 @@
 // controler function
 function getValue(){
     document.getElementById("alert").classList.add("invisible");
+
+    // get the user string from the page
     let userString = document.getElementById("userString").value;
-    let revString = reverseString(userString);
-    displayString(userString, revString);
+    userString = userString.toLowerCase();
+
+    //remove spaces and special characters
+    let regex = /[^a-z0-9]/gi;
+    userString = userString.replace(regex, "");
+    
+    //check for palindrome
+    let returnObj = {};
+    returnObj = checkForPalindrome(userString);
+
+    //display result
+    displayString(userString, returnObj);
 }
 
 // reverse the string
@@ -18,17 +30,31 @@ function reverseString(userString){
     return revString;
 }
 
-// display the reverse string to the user
-// view function
-function displayString(userString, revString){
-    // Write to the page
-    if (userString.toLowerCase() == revString.toLowerCase()) {
-        document.getElementById("msgHead").innerHTML = `Well Done! Your test string is a palindrome`    
+function checkForPalindrome(userString)
+{
+    //reverse the user string
+    let revString = reverseString(userString);
+
+    let returnObj = {};
+
+    if (userString == revString) {
+        returnObj.msgHead = "Well done! You entered a palindrome!";
     }else{
-        document.getElementById("msgHead").innerHTML = `Sorry, your test string is not a palindrome`
+        returnObj.msgHead = "Sorry! You did not enter a palindrome!";
     }
 
-    document.getElementById("msg").innerHTML = `Your string is : ${userString} <br> Your string reversed is : ${revString}`; 
+    returnObj.reversed = revString;
+
+    return returnObj;
+
+}
+
+// display the reverse string to the user
+// view function
+function displayString(userString, returnObj){
+    // Write to the page
+    document.getElementById("msgHead").innerHTML = returnObj.msgHead    
+    document.getElementById("msg").innerHTML = `Your string reversed is : ${returnObj.reversed}`; 
     
     // show the alert box
     document.getElementById("alert").classList.remove("invisible");
