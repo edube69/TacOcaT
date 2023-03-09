@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name : A Coding Project By Eric Dubé</title>
+    <title>Tacocat : A Coding Project By Eric Dubé</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,7 +24,7 @@
     <!-- ==== Nav Section ==== -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="img/favicon.svg" class="d-inline-block align-text-top" width="30" height="30"> App Name</a>
+            <a class="navbar-brand" href="#"><img src="img/favicon.svg" class="d-inline-block align-text-top" width="30" height="30"> TACOCAT</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -41,7 +41,7 @@
                         <a class="nav-link active" aria-current="page"  href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/edube69/Tacocat">Git Repo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" target="_blank" href="#">About</a>
@@ -59,17 +59,49 @@
                 <div class="col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            // Call Hello World
-                            function HelloWorld(){
-                                alert("Hello World");
+                            // Get the string from the page
+                            // controler function
+                            function getValue(){
+                                document.getElementById("alert").classList.add("invisible");
+                                let userString = document.getElementById("userString").value;
+                                let revString = reverseString(userString);
+                                displayString(userString, revString);
+                            }
+
+                            // reverse the string
+                            // logic function
+                            function reverseString(userString){
+                                let revString = [];
+                                // The last position in an array is length - 1
+                                for(i = userString.length - 1 ; i >= 0 ; i--){
+                                    revString += userString[i];
+                                }
+                                return revString;
+                            }
+
+                            // display the reverse string to the user
+                            // view function
+                            function displayString(userString, revString){
+                                // Write to the page
+                                if (userString == revString) {
+                                    document.getElementById("msgHead").innerHTML = `Well Done! Your test string is a palindrome`    
+                                }else{
+                                    document.getElementById("msgHead").innerHTML = `Sorry, your test string is not a palindrome`
+                                }
+
+                                document.getElementById("msg").innerHTML = `Your string is : ${userString} <br> Your string reversed is : ${revString}`; 
+                                
+                                // show the alert box
+                                document.getElementById("alert").classList.remove("invisible");
                             }
                         </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                    <p>The Code is structured in 3 functions.</p>
+                    <h5>Tacocat</h5>
+                    <p>Taco Cat is a palindrome.  A palindrome is a word, phrase, or sequence that reads the same backward as forward.  
+                        Write a program that checks if the phrase entered is a palindrome.</p>
                 </div>
             </div>
         </div>
